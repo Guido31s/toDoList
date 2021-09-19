@@ -1,3 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@1&display=swap');
 .App {
   text-align: center;
+}
+
+input {
+  height: 30px;
+  margin: 5px 5px;
+  width: 300px;
+  border: none;
+  box-shadow: 2px 2px 3px #333;
+  outline: none;
+}
+
+
+body {
+  background-color: grey;
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+li {
+  list-style: none;
+  font-size: 24px;
+  text-shadow: 1px 1px 1px black;
+}
+
+p {
+  font-size: 18px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px black;
 }

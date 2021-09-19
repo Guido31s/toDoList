@@ -1,20 +1,21 @@
-import React, {
-    useState,
-    useEffect,
-    useRef
-} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import TodoList from './TodoList'
-import {
-    v4 as uuidv4
-} from "uuid"
-
-
+import { v4 as uuidv4 } from "uuid"
+import Button from '@mui/material/Button'
+import { ButtonGroup } from '@mui/material'
 const KEY = "TasksApp.items"
 
 const TodoListContainer = () => {
+    
     const [items, setItems] = useState([
 
     ])
+
+    const removeTask = (id) => {
+        const newTask = items.filter((item) => item.id !== id);
+
+        setItems(newTask)
+    }
 
     const taskRef = useRef();
 
@@ -57,12 +58,15 @@ const TodoListContainer = () => {
     }, [items])
     return ( <>
         <input ref = {taskRef}
-        type = "text"
-        placeholder = "Añade una tarea" />
-        <button onClick = {addTask} >➕</button>
-        <button onClick = {clearTasks}>✖</button>
-        <TodoList changeItem = {changeItem} todos = {items}/>
-        <p> Faltan {items.filter((array) => !array.completed).length } tareas para terminar </p> 
+        type="text"
+        placeholder = "Añade una tarea..." />
+        <ButtonGroup variant="contained">
+        <Button onClick = {addTask} >Añadir tarea</Button>
+        <Button  color="error" onClick = {clearTasks}>Limpiar Tareas</Button>
+        </ButtonGroup>
+        
+        <TodoList changeItem = {changeItem} todos={items} onRemove={removeTask}/>
+        <p>{items.filter((array) => !array.completed).length } Tareas para terminar </p> 
          </>
     )
 }
